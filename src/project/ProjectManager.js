@@ -2032,6 +2032,12 @@ define(function (require, exports, module) {
             } else {
                 // Create all new nodes in a batch
                 _createNode($directoryNode, null, addedJSON, true, true);
+                isClosed = $directoryNode.hasClass("jstree-closed");
+                if (!wasOpen && !isClosed) {
+                    refreshFileTree().done(function () {
+                        _redraw(true);
+                    });
+                }
                 doRedraw = true;
             }
         }
